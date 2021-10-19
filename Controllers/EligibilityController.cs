@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using nidirect_app_frontend.ViewModels;
 using nidirect_app_frontend.ViewModels.Eligibility;
-using nidirect_app_frontend.ViewModels.NewFolder;
 
 namespace nidirect_app_frontend.Controllers
 {
