@@ -7686,8 +7686,11 @@ pre.language-markup code.language-markup span.nidirect-codeLine::before {
 }
 
 .banner-dangerous-header {
-    color: #0b0c0c;
+    color: #fff;
+}
 
+.banner-dangerous-header-heading {
+    background: #b10e1e;
 }
 
 /*  Task List */
