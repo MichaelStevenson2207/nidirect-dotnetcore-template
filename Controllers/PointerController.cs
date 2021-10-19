@@ -42,12 +42,6 @@ namespace nidirect_app_frontend.Controllers
         [HttpGet]
         public async Task<JsonResult> GetAddressesAsync(string postCode)
         {
-            // Check if postcode contains a NI postcode
-            if (!postCode.Contains("BT"))
-            {
-                return Json("Not found");
-            }
-
             var client = _pointerClient.CreateClient("PointerClient");
 
             client.DefaultRequestHeaders.Accept.Clear();
