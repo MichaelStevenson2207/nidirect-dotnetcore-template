@@ -18,12 +18,5 @@ namespace nidirect_app_frontend.Controllers
 
             return View(model);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Index(BaseViewModel model)
-        {
-            return RedirectToAction("GovUkPay", "Pay");
-        }
     }
 }

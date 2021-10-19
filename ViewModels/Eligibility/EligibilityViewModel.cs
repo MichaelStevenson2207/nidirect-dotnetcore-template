@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace nidirect_app_frontend.ViewModels.NewFolder
+namespace nidirect_app_frontend.ViewModels.Eligibility
 {
     public class EligibilityViewModel : BaseViewModel
     {
