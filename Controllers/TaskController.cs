@@ -3,9 +3,9 @@ using nidirect_app_frontend.ViewModels;
 
 namespace nidirect_app_frontend.Controllers
 {
-    public class CheckAnswersController : Controller
+    public class TaskController : Controller
     {
-        private const string SectionName = "Check answers";
+        private const string SectionName = "Tasks";
 
         [HttpGet]
         public IActionResult Index()
@@ -13,7 +13,7 @@ namespace nidirect_app_frontend.Controllers
             BaseViewModel model = new BaseViewModel
             {
                 SectionName = SectionName,
-                TitleTagName = "Check answers"
+                TitleTagName = "Task list"
             };
 
             return View(model);
@@ -23,7 +23,7 @@ namespace nidirect_app_frontend.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(BaseViewModel model)
         {
-            return RedirectToAction("Index", "Task");
+            return RedirectToAction("GovUkPay", "Pay");
         }
     }
 }
