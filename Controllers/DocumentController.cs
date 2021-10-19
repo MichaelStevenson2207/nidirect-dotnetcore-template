@@ -6,6 +6,7 @@ namespace nidirect_app_frontend.Controllers
     public class DocumentController : Controller
     {
         private const string SectionName = "Documents";
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -14,7 +15,15 @@ namespace nidirect_app_frontend.Controllers
                 SectionName = SectionName,
                 TitleTagName = "Upload documents"
             };
+
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(DocumentViewModel model)
+        {
+            return RedirectToAction("Index", "CheckAnswers");
         }
     }
 }
