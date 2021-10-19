@@ -1,0 +1,13 @@
+$small-breakpoint: 320px;
+$medium-breakpoint: 641px;
+$large-breakpoint: 880px;
+
+$govuk-breakpoints: (
+  mobile:  $small-breakpoint,
+  tablet:  $medium-breakpoint,
+  desktop: $large-breakpoint
+) !default;
+
+$nidirect-font-family: Arial, sans-serif;
+
+$govuk-font-family: ($nidirect-font-family) !default; 

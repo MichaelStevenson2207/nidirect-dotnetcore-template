@@ -1,0 +1,39 @@
+//footer
+footer.nidirect_footer{
+    /* font-size: 1.1875rem;
+    line-height: 1.31579; */
+    background-color:$nidirect-light-grey;
+    height:auto;
+    /* width:100%; */
+   /*  flex-shrink:0; */
+    margin-top:0;
+    padding:0.5625rem 0; //9px
+    border-top: 1px solid $nidirect-mid-grey;
+    ul{
+        list-style: none;
+        padding-left:0rem;
+/*      padding-bottom:3.3rem;
+ */     margin-bottom:0rem;
+        /* height:auto; */
+        li{
+            display: inline-block;
+            border-right-width: 1px;
+            border-right-style:solid;
+            border-right-color:$nidirect-dark-grey;
+            padding-top:0;
+            padding-bottom:0;
+            padding-right:0.5625rem;
+            padding-left:0;
+            margin-right:0.5625rem;
+            margin-bottom:0.5625rem;
+        } 
+        li:last-child{
+            padding-right:0;
+            margin-right:0;
+            border-right-width: 0rem;
+            border-right-style:none;
+        }
+    }
+}
+
+

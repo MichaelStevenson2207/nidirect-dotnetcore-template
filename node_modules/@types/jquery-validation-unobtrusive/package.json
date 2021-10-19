@@ -1,0 +1,24 @@
+{
+    "name": "@types/jquery-validation-unobtrusive",
+    "version": "3.2.32",
+    "description": "TypeScript definitions for Microsoft jQuery Unobtrusive Validation",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Matt Brooks",
+            "url": "https://github.com/EnableSoftware"
+        }
+    ],
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/jquery.validation": "*"
+    },
+    "peerDependencies": {},
+    "typesPublisherContentHash": "c9aa056472a88a480a469945d62eda3f9c95ae3f9bddf672e774d948198c6f1c",
+    "typeScriptVersion": "2.3"
+}
