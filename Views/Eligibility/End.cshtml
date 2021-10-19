@@ -1,0 +1,24 @@
+﻿@model nidirect_app_frontend.ViewModels.BaseViewModel
+@{
+    ViewData["Title"] = "End";
+}
+
+<a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
+<main class="govuk-main-wrapper" id="main-content" role="main">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+            <partial name="../Components/_errorSummary.cshtml" />
+
+            <h1 class="govuk-heading-l">
+                Sorry, you are unable to continue
+            </h1>
+
+
+            <div class="govuk-form-group">
+                <partial name="~/Views/Shared/_ContactUsForHelp.cshtml" />
+            </div>
+        </div>
+    </div>
+</main>

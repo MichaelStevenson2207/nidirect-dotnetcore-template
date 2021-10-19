@@ -1,0 +1,47 @@
+﻿@model nidirect_app_frontend.ViewModels.Participant.IndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form asp-action="Index" asp-controller="Participant" method="post">
+    @Html.AntiForgeryToken()
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+
+                <partial name="../Components/_errorSummary.cshtml" />
+
+                <h1 class="govuk-heading-l">
+                    What is your full name?
+                </h1>
+
+                <div class="govuk-form-group">
+                    <label asp-for="Forename" class="govuk-label">
+                        First name and any middle names
+                    </label>
+
+                    <span asp-validation-for="Forename" class="govuk-error-message"></span>
+                    <input class="govuk-input govuk-!-width-two-thirds" asp-for="Forename" type="text" spellcheck="false" autocomplete="given-name">
+                </div>
+
+                <div class="govuk-form-group">
+                    <label asp-for="Surname" class="govuk-label">
+                        Last name
+                    </label>
+
+                    <span asp-validation-for="Surname" class="govuk-error-message"></span>
+                    <input class="govuk-input govuk-!-width-two-thirds" asp-for="Surname" type="text" spellcheck="false" autocomplete="family-name">
+                </div>
+
+                <div class="govuk-form-group">
+                    <partial name="~/Views/Shared/_ContactUsForHelp.cshtml" />
+                </div>
+
+                <div class="govuk-form-group">
+                    <input type="submit" id="btnContinueSave" value="Save and continue" name="save" class="govuk-button" data-module="govuk-button" />
+                </div>
+            </div>
+        </div>
+
+    </main>
+</form>

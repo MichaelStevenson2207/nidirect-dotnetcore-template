@@ -1,0 +1,17 @@
+﻿<div id="timeout-dialog" class="modal" aria-live="assertive" aria-modal="true">
+    <div class="modal-dialog-box" role="alertdialog" aria-describedby="aria-timeout-label">
+        <span class="govuk-visually-hidden-focusable" id="aria-timeout-label">
+            <!-- content of aria label -->
+            Your session will expire in 2:00 minutes. Any information you entered without saving will be lost. Do you want more time to continue?
+        </span>
+        <h2 class="icon-important red-inverse">Your application will time out soon</h2>
+        <p class="govuk-body" id="expiring-in-message" role="timer" aria-live="off">
+            Your application will time out in 20:00 minutes
+        </p>
+        <p class="govuk-body">Any information you entered without saving will be lost. We do this to keep your information secure.</p>
+        <p>
+            <button class="govuk-button extend" id="extend" href="#" rel="modal:close">Continue application</button>
+            <button class="govuk-button govuk-button--secondary abort" id="destroy" href="#">End session</button>
+        </p>
+    </div>
+</div>

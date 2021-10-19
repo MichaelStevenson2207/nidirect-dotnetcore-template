@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="no index, no follow" />
+    <meta name="description" content="NI Direct template for Dotnet Core" />
+    <meta name="theme-color" content="#0a78cd" />
+    <title>@(Model.TitleTagName != null ? Model.TitleTagName + " - " : string.Empty) NI Direct</title>
+    <link rel="apple-touch-icon" src="~/images/ni-direct-apple-touch.png" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/sass/site.css" />
+    <link rel="icon" sizes="16x16 32x32 48x48" href="~/favicon.ico" type="image/x-icon">
+    <link href="~/css/jquery-modal.css" rel="stylesheet" />
+</head>
+
+<body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <a href="#main-content" class="govuk-skip-link" data-html2canvas-ignore="true">Skip to main content</a>
+    <partial name="../Components/_cookieConsentBanner.cshtml" />
+    <partial name="../Components/_header.cshtml" />
+
+    <div class="govuk-width-container app-width-container">
+        <partial name="../Components/_alpha.cshtml" />
+        @RenderBody()
+    </div>
+
+    <partial name="../Shared/_TimeOutControl.cshtml" />
+    <partial name="../Components/_footer.cshtml" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <partial name="../Shared/_ValidationScriptsPartial.cshtml" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+    <partial name="../Shared/_initializeGOVUKFrontend.cshtml" />
+    <script src="~/js/addresslookup.js" asp-append-version="true"></script>
+    <script src="~/js/loadspinner.js" asp-append-version="true"></script>
+    <script src="~/js/moment.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-modal.js" asp-append-version="true"></script>
+    <script src="~/js/inactivity-alert.js" asp-append-version="true"></script>
+</body>
+</html>

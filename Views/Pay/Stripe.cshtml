@@ -1,0 +1,51 @@
+﻿@model nidirect_app_frontend.ViewModels.BaseViewModel
+@{
+    ViewData["Title"] = "Stripe";
+}
+
+<form asp-controller="Pay" asp-action="Stripe" method="post">
+    @Html.AntiForgeryToken()
+
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                <h1 class="govuk-heading-l">Buy angling licences and permits</h1>
+
+                <p class="govuk-body">
+                    To fish legally you will need both a rod licence and permit or day ticket. Use the
+
+                    green button below to buy these online. This includes concessionary disabled rod licences and permits. By choosing ‘Combined Licence and Permit’ you can buy your annual or short-term rod licence and permit together.
+                </p>
+
+                <div class="govuk-form-group">
+                    <h2 class="govuk-label-wrapper">
+                        <label class="govuk-label govuk-label--m" for="cost">
+                            License only
+                        </label>
+                    </h2>
+                    <div class="govuk-input__wrapper">
+                        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                        <input class="govuk-input govuk-input--width-5" id="cost" name="cost" type="text" disabled="disabled" value="26.00" spellcheck="false">
+                    </div>
+                </div>
+
+                <div class="govuk-warning-text">
+                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                    <strong class="govuk-warning-text__text">
+                        <span class="govuk-warning-text__assistive">Warning</span>
+                        By continuing, you are agreeing to adhere to the associated conditions of issue for licences and permits.
+                    </strong>
+                </div>
+
+                <p class="govuk-inset-text">
+                    Refer to the stipe testing guide to select the test card you want to use: <a href="https://stripe.com/docs/testing" target="blank" rel="nofollow" class="govuk-link">https://stripe.com/docs/testing</a>
+                    e.g. Use 4000 0566 5566 5556 for VISA debit.
+                </p>
+
+                <button type="submit" id="checkout-button" class="govuk-button" data-module="govuk-button">Checkout</button>
+
+            </div>
+        </div>
+    </main>
+</form>

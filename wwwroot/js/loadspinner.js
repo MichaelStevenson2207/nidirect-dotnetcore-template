@@ -1,0 +1,3 @@
+﻿function loadSpinner() {
+    $("#loadSpinner").show();
+}

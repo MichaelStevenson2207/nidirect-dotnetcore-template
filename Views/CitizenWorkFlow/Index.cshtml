@@ -1,0 +1,42 @@
+﻿@model nidirect_app_frontend.ViewModels.BaseViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main class="govuk-main-wrapper" id="main-content" role="main">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-l">Work flows</h1>
+            
+            <p class="govuk-body">
+                Typically for a lot of citizen services it will follow this kind of flow:
+            </p>
+
+            <ol class="govuk-list govuk-list--number">
+                <li>Begin with a start page on what you need ready e.g. identity documents and also info on the service</li>
+                <li>Eligibility checker - this is at the start so that you dont proceed when you cant apply!</li>
+                <li>Data collection e.g. names, addresses</li>
+                <li>Document uploads</li>
+                <li>Check answers - give the user the ability to check and change answers</li>
+                <li>Pay and submit</li>
+                <li>Confirmation screen and email follow up</li>
+            </ol>
+
+            <table class="govuk-table">
+                <caption class="sr-only">Table of work flows</caption>
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Work flow type</th>
+                        <th scope="col" class="govuk-table__header">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">Basic Citizen workflow</th>
+                        <td class="govuk-table__cell"><a class="govuk-link" href="@Url.Action("Start", "CitizenWorkFlow")">Start</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

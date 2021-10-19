@@ -1,0 +1,39 @@
+﻿@model nidirect_app_frontend.ViewModels.BaseViewModel
+@{
+    ViewData["Title"] = "GovUkPay";
+}
+
+<form asp-controller="Pay" asp-action="GovUkPay" method="post">
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-three-quarters">
+                <h1 class="govuk-heading-l">Gov UK pay</h1>
+
+                <table class="govuk-table">
+                    <caption class="sr-only">List of licenses and fees due</caption>
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header govuk-!-width-one-half">License</th>
+                            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <th scope="row" class="govuk-table__header">Provisional license</th>
+                            <td class="govuk-table__cell">£62.50</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="govuk-inset-text">
+                    Refer to the Govuk testing guide to select the test card you want to use: <a href="https://docs.payments.service.gov.uk/testing_govuk_pay/" target="blank" rel="nofollow" class="govuk-link">https://docs.payments.service.gov.uk/testing_govuk_pay/</a>
+                    e.g. Use 4242424242424242 for VISA debit.
+                </p>
+
+                <button class="govuk-button" data-module="govuk-button" type="submit">
+                    Proceed to checkout
+                </button>
+            </div>
+        </div>
+    </main>
+</form>

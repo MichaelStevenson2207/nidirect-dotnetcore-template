@@ -1,0 +1,61 @@
+﻿@model nidirect_app_frontend.ViewModels.NewFolder.EligibilityViewModel
+@{
+    ViewData["Title"] = "Eligibility";
+}
+
+<form method="post" asp-action="Eligibility" asp-controller="Eligibility">
+    @Html.AntiForgeryToken()
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+
+                <partial name="../Components/_errorSummary.cshtml" />
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-fieldset__heading">Are you currently resident in Northern Ireland?</h1>
+                        </legend>
+
+                        <span asp-validation-for="IsResidentNi" id="IsResidentNi-error" class="govuk-error-message"></span>
+
+                        <div class="govuk-radios govuk-radios--inline">
+                            <div class="govuk-radios__item">
+                                @if (Model.IsResidentNi != null && Model.IsResidentNi.Value == true)
+                                {
+                                    <input class="govuk-radios__input" id="IsResidentNi" name="IsResidentNi" asp-for="IsResidentNi" type="radio" value=true checked>
+                                }
+                                else
+                                {
+                                    <input class="govuk-radios__input" id="IsResidentNi" name="IsResidentNi" asp-for="IsResidentNi" type="radio" value=true>
+                                }
+
+                                <label class="govuk-label govuk-radios__label" for="IsResidentNi">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                @if (Model.IsResidentNi != null && Model.IsResidentNi.Value == false)
+                                {
+                                    <input class="govuk-radios__input" id="IsResidentNi-No" name="IsResidentNi" asp-for="IsResidentNi" type="radio" value=false checked>
+                                }
+                                else
+                                {
+                                    <input class="govuk-radios__input" id="IsResidentNi-No" name="IsResidentNi" asp-for="IsResidentNi" type="radio" value=false>
+                                }
+                                <label class="govuk-label govuk-radios__label" for="IsResidentNi-No">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+           
+                <input type="submit" value="Continue" name="save" class="govuk-button" data-module="govuk-button" />
+                <div class="govuk-form-group">
+                    <partial name="~/Views/Shared/_ContactUsForHelp.cshtml" />
+                </div>
+            </div>
+        </div>
+    </main>
+</form>

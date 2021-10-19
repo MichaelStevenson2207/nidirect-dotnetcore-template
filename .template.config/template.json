@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "MichaelStevenson2207",
+    "classifications": ["Web", "MVC"],
+    "identity": "NIDirectDotNetCoreFrontEnd",
+    "name": "NIDirect Web Frontend",
+    "shortName": "nidirect-app-frontend",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sourceName": "nidirect-app-frontend",
+    "preferNameDirectory": "true",
+    "symbols": {
+        "title": {
+            "type": "parameter",
+            "defaultValue": "Service Name",
+            "replaces": "Example Service Name"
+        }
+    }
+}

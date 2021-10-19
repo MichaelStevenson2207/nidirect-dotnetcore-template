@@ -1,0 +1,22 @@
+{
+  "name": "nidirect-app-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery-validation-unobtrusive": "^3.2.32",
+    "@types/jquery.validation": "^1.16.7",
+    "govuk-frontend": "^3.14.0",
+    "jquery": "^3.6.0",
+    "moment": "^2.29.1",
+    "nidirect-frontend": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.6"
+  }
+}

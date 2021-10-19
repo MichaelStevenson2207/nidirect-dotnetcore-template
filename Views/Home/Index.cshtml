@@ -1,0 +1,54 @@
+@model nidirect_app_frontend.ViewModels.BaseViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                <partial name="../Components/_errorSummary.cshtml" />
+
+                <h1 class="govuk-heading-l">NI direct dotnet core template</h1>
+
+                <p class="govuk-body">
+                    This is not meant to be an exhaustive template but rather a good head start in term of setting up the UI for
+                    NI Direct applications with the GDS design pattern using DotNet Core.
+                <p>
+
+                <p class="govuk-body">
+                    The below links show you how to install the
+                    npm packages and set up in case you need to do it yourself, but you don't
+                    need to do that for this template as Ive done it for you. When compiling the sass files I recommend using
+                    the live Sass compiler from the marketplace in Visual Studio Code.
+                </p>
+
+                <ul class="govuk-list govuk-list--bullet">
+                    <li><a class="govuk-link" href="https://uxg.nidirect.gov.uk/applying_brand.html" target="blank" rel="nofollow">NI Direct UXG setup (opens in a new tab)</a></li>
+                    <li><a class="govuk-link" href="https://frontend.design-system.service.gov.uk/#gov-uk-frontend" target="blank" rel="nofollow">GDS setup (opens in a new tab)</a></li>
+                </ul>
+
+                <h2 class="govuk-heading-m">How to install this template</h2>
+
+                <ol class="govuk-list govuk-list--number">
+                    <li>Clone the repo</li>
+                    <li>
+                        Use command line to navigate to cloned project
+                        i.e. cd
+                    </li>
+                    <li>To install run:
+                        <pre class="language-markup"><code class="language-markup">dotnet new -i .\</code></pre>
+                    </li>
+                    <li>
+                        Then run this command to list templates (it should be in there):
+                        <pre class="language-markup"><code class="language-markup">dotnet new -u</code></pre>
+                    </li>
+                    <li>Create a new folder somewhere for your project</li>
+                    <li>Then run:
+                        <pre class="language-markup"><code class="language-markup">dotnet new nidirect-app-frontend -t "NewAppName"</code></pre>
+                     <li>Your new web project with all the GDS design and NI Direct uxg should be generated</li>
+                </ol>
+            </div>
+        </div>
+    </main>

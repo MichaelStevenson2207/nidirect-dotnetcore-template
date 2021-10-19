@@ -1,0 +1,73 @@
+﻿@model nidirect_app_frontend.ViewModels.BaseViewModel
+@{
+    ViewData["Title"] = "Start";
+}
+
+<main class="govuk-main-wrapper" id="main-content" role="main">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <partial name="../Components/_errorSummary.cshtml" />
+
+            <h1 class="govuk-heading-l">
+                Apply for your first provisional driving licence
+            </h1>
+
+            <p class="govuk-body">
+                Get your first provisional driving licence for a car, motorbike or moped from DVA online.
+                To apply you must:
+            </p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>
+                    be at least 17 years old. You may apply for your provisional car license 2 months
+                    before your 17th birthday, BUT you must not drive until it comes into effect
+                </li>
+                <li>be able to read a number plate from 20 metres away</li>
+                <li>be lawfully resident in the United Kingdom</li>
+            </ul>
+
+            <p class="govuk-body">
+                If you already have a provisional licence, you do not need to apply again to drive a car, motorbike or moped.
+            </p>
+
+            <a href="@Url.Action("Eligibility","Eligibility")" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+                Start now
+                <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                </svg>
+            </a>
+
+            <h2 class="govuk-heading-m">Before you start</h2>
+
+            <p class="govuk-body">
+                It costs £62.50 to apply online. You can pay by MasterCard, Visa, Electron or Delta debit or credit card.
+            </p>
+
+            <p class="govuk-body">You’ll need:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>an identity document, such as your passport</li>
+                <li>You might be asked for additional information, such as your National Insurance number if you know it.</li>
+            </ul>
+
+            <p class="govuk-body">
+                You’ll get a confirmation email from DVA after you’ve applied.
+            </p>
+
+            <p class="govuk-body">
+                Your licence should arrive within three weeks if you apply online. It may take longer if DVA need to make additional checks.
+            </p>
+
+            <h2 class="govuk-heading-m">When you can drive with a provisional licence</h2>
+
+            <p class="govuk-body">
+                There are different rules depending on your age and the type of vehicle. Check what vehicles you can drive and when before you start to learn.
+            </p>
+
+            <div class="govuk-form-group">
+                <partial name="~/Views/Shared/_ContactUsForHelp.cshtml" />
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,55 @@
+﻿@model nidirect_app_frontend.ViewModels.BaseViewModel
+@{
+    ViewData["Title"] = "Completed";
+}
+
+@if (ViewData["status"].ToString() != "success")
+{
+    <main class="govuk-main-wrapper" id="main-content" role="main" aria-label="Payment error page">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-three-quarters">
+
+                <partial name="../Components/_errorSummary.cshtml" />
+
+                <h1 class="govuk-heading-l">Payment error please try again.</h1>
+                <div>
+                    <a href="@Url.Action("GovUkPay", "Pay")" class="govuk-button" data-module="govuk-button">Continue To Payment</a>
+                </div>
+            </div>
+        </div>
+    </main>
+}
+else
+{
+    <main class="govuk-main-wrapper" id="main-content" role="main" aria-label="Payment success page">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <div class="govuk-panel govuk-panel--confirmation">
+                    <h1 class="govuk-panel__title">
+                        Completed
+                    </h1>
+                    <div class="govuk-panel__body">
+                        Your reference number<br><strong>HDJ2123F</strong>
+                    </div>
+                </div>
+
+                <p class="govuk-body">We have sent you a confirmation email.</p>
+
+                <h2 class="govuk-heading-m">What happens next</h2>
+
+                <p class="govuk-body">
+                    We’ve sent your application to the DVA Office.
+                </p>
+                <p class="govuk-body">
+                    They will contact you either to confirm your license, or to ask for more information.
+                </p>
+
+                <p class="govuk-body">
+                    <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+}

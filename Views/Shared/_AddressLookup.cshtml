@@ -1,0 +1,70 @@
+﻿@model nidirect_app_frontend.Models.IAddress
+
+<div class="govuk-form-group">
+    <div class="govuk-hint">
+        To find your address, enter a valid Northern Ireland postcode and select find address.
+    </div>
+
+    <div class="govuk-form-group" id="PostCodeSearchComponent">
+        <label class="govuk-label" for="SearchPostCode">
+            Postcode
+        </label>
+        <span id="addressError" class="govuk-error-message" style="display:none;">
+            <span class="govuk-visually-hidden">Error:</span> Enter a real postcode
+        </span>
+
+        <input class="govuk-input govuk-input--width-10" id="SearchPostCode" asp-for="SearchPostCode" type="text" autocomplete="chrome-off">
+
+        <button class="govuk-button govuk-button--secondary" type="button" data-module="govuk-button" id="btnSearch" onclick="getAddresses();">
+            Find address
+        </button>
+       <div id="loadSpinner" class="govuk-box-highlight" style="display:none;" role="status">
+          <span class="spinner-border"></span>
+          Loading, please wait
+       </div>
+    </div>
+ </div>
+  
+    <div class="govuk-form-group" id="SearchAddressList" style="display:none;">
+        <label class="govuk-label" asp-for="SearchAddress">
+            Select an address
+        </label>
+        <select class="govuk-select" asp-for="SearchAddress" onchange="fillAddressTextBoxes();">
+        </select>
+    </div>
+        
+    <div class="govuk-hint">
+        If you cannot find your address, enter your details below.
+    </div>
+    <div class="govuk-form-group">
+        <label asp-for="Address1" class="govuk-label"></label>
+        <span asp-validation-for="Address1" class="govuk-error-message"></span>
+        <input class="govuk-input govuk-!-width-two-thirds" type="text" asp-for="Address1" autocomplete="address-line1" />
+    </div>
+
+    <div class="govuk-form-group">
+        <label asp-for="Address2" class="govuk-label">Address Line 2 (optional)</label>
+        <input class="govuk-input govuk-!-width-two-thirds" type="text" asp-for="Address2" value="@Model.Address2" autocomplete="address-line2" />
+    </div>
+
+    <div class="govuk-form-group">
+        <label asp-for="Address3" class="govuk-label">Address Line 3 (optional)</label>
+        <input class="govuk-input govuk-!-width-two-thirds" type="text" asp-for="Address3" autocomplete="address-line3" />
+    </div>
+
+    <div class="govuk-form-group">
+        <label asp-for="TownCity" class="govuk-label">Town or city</label>
+        <span asp-validation-for="TownCity" class="govuk-error-message"></span>
+        <input class="govuk-input govuk-!-width-two-thirds" type="text" asp-for="TownCity" value="@Model.TownCity" autocomplete="address-level2" />
+    </div>
+
+    <div class="govuk-form-group">
+        <label asp-for="PostCode" class="govuk-label">Postcode</label>
+        <span asp-validation-for="PostCode" class="govuk-error-message"></span>
+        <input class="govuk-input govuk-!-width-two-thirds" type="text" asp-for="PostCode" value="@Model.PostCode" autocomplete="postal-code" />
+    </div>
+
+    <div class="govuk-form-group">
+        <label asp-for="Country" class="govuk-label">Country (optional)</label>
+        <input class="govuk-input govuk-!-width-two-thirds" type="text" asp-for="Country" value="@Model.Country" autocomplete="country" />
+    </div>

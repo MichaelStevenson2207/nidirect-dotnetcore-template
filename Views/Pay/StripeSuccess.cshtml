@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "StripeSuccess";
+}
+
+<main class="govuk-main-wrapper" id="main-content" role="main">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            
+            <div class="govuk-panel govuk-panel--confirmation">
+                <h1 class="govuk-panel__title">
+                    Success
+                </h1>
+                <div class="govuk-panel__body">
+                    Your reference number<br><strong>HDJ2123F</strong>
+                </div>
+            </div>
+
+            <p class="govuk-body">
+                You have successfully paid for a fishing license.
+            </p>
+
+            <p class="govuk-body">
+                <a asp-controller="Pay" asp-action="Stripe" class="govuk-button">Buy another license</a>
+            </p>
+        </div>
+    </div>
+</main>

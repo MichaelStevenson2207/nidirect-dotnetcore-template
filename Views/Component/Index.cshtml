@@ -1,0 +1,407 @@
+﻿@model nidirect_app_frontend.ViewModels.BaseViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main class="govuk-main-wrapper" id="main-content" role="main">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">List of common components</h1>
+
+            <p class="govuk-inset-text">
+                These are a list of commonly used components using the GDS design pattern. Some of these have been
+                modified from other GOV UK sites and aren't official patterns yet, such as the stats pattern
+                which I modified from Notify. These are some of the more handy ones for admin portals.
+            </p>
+
+            <p class="govuk-body">
+                The full list of components can be found at the <a class="govuk-link" target="blank" rel="nofollow" href="https://design-system.service.gov.uk/components/">GDS design site (Opens in a new tab)</a>.
+            </p>
+
+            <h2 class="govuk-heading-m">Time out control</h2>
+
+            <p class="govuk-body">
+                This is a handy timeout model that will display after 20 minutes and then re-direct the user to the helper controller to log them out using sign out manager
+                if needed. This runs off a javascript file called inactivity-alert.js.
+                This is usually required by accessibility audits.
+            </p>
+
+            <div id="timeout-dialog-example" class="modal" aria-live="assertive" style="display: block;" aria-modal="true">
+                <div class="modal-dialog-box" role="alertdialog" aria-describedby="aria-timeout-label-example">
+                    <span class="govuk-visually-hidden-focusable" id="aria-timeout-label-example">
+                        <!-- content of aria label -->
+                        Your session will expire in 2:00 minutes. Any information you entered without saving will be lost. Do you want more time to continue?
+                    </span>
+                    <h2 class="icon-important red-inverse">Your application will time out soon</h2>
+                    <p class="govuk-body" id="expiring-in-message-example" role="timer" aria-live="off">
+                        Your application will time out in 20:00 minutes
+                    </p>
+                    <p class="govuk-body">Any information you entered without saving will be lost. We do this to keep your information secure.</p>
+                    <p>
+                        <button class="govuk-button extend" id="extend-example" href="#" rel="modal:close">Continue application</button>
+                        <button class="govuk-button govuk-button--secondary abort" id="destroy-example" href="#">End session</button>
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="govuk-heading-m">Stats page</h2>
+
+            <div class="govuk-grid-row">
+                <div id="total-created" class="govuk-grid-column-one-quarter">
+
+                    <span class="big-number-with-status">
+                        <span class="govuk-link big-number-link">
+
+                            <span class="big-number-smaller">
+                                <span class="big-number-number">
+                                    160
+                                </span>
+                                <span class="big-number-label">Citizen</span>
+                            </span>
+                        </span>
+                        <span class="govuk-link big-number-link">
+                            <span class="big-number-smaller">
+                                <span class="big-number-number">
+                                    140
+                                </span>
+                                <span class="big-number-label">Taxi</span>
+                            </span>
+                        </span>
+                        <span class="big-number-status">
+                            Licenses created 300
+                        </span>
+                    </span>
+                </div>
+                <div id="total-completed" class="govuk-grid-column-one-quarter">
+
+                    <span class="big-number-with-status">
+
+                        <span class="govuk-link big-number-link">
+                            <span class="big-number-smaller">
+                                <span class="big-number-number">
+                                    100
+                                </span>
+                                <span class="big-number-label">Citizen</span>
+                            </span>
+                        </span>
+                        <span class="govuk-link big-number-link">
+                            <span class="big-number-smaller">
+                                <span class="big-number-number">
+                                    80
+                                </span>
+                                <span class="big-number-label">Taxi</span>
+                            </span>
+                        </span>
+                        <span class="big-number-status">
+                            Printed  180
+                        </span>
+                    </span>
+                </div>
+                <div id="total-documents" class="govuk-grid-column-one-quarter">
+
+                    <span class="big-number-with-status">
+                        <span class="govuk-link big-number-link">
+                            <span class="big-number-smaller">
+                                <span class="big-number-number">
+                                    156
+                                </span>
+                                <span class="big-number-label">Citizen</span>
+                            </span>
+                        </span>
+
+                        <span class="govuk-link big-number-link">
+
+                            <span class="big-number-smaller">
+                                <span class="big-number-number">
+                                    100
+                                </span>
+                                <span class="big-number-label">Taxi</span>
+                            </span>
+                        </span>
+                        <span class="big-number-status">
+                            Documents 256
+                        </span>
+                    </span>
+                </div>
+                <div id="total-paid" class="govuk-grid-column-one-quarter">
+                    <span class="big-number-with-status">
+                        <span class="govuk-link big-number-link">
+                            <span class="big-number-smaller">
+                                <span class="big-number-number">
+                                    £ 90,000
+                                </span>
+                                <span class="big-number-label">Citizen</span>
+                            </span>
+                        </span>
+                        <span class="govuk-link big-number-link">
+
+                            <span class="big-number-smaller">
+                                <span class="big-number-number">
+                                    £ 60,000
+                                </span>
+                                <span class="big-number-label">Taxi</span>
+                            </span>
+                        </span>
+                        <span class="big-number-status">
+                            Paid £ 150,000
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <h2 class="govuk-heading-m">Notifications</h2>
+
+            <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title-success">
+                        Success
+                    </h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <h3 class="govuk-notification-banner__heading">
+                        Success message
+                    </h3>
+                    <p class="govuk-body">
+                        Success body
+                    </p>
+                </div>
+            </div>
+
+            <div class="govuk-notification-banner" role="region" data-module="govuk-notification-banner">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title-warning">
+                        Important
+                    </h2>
+                </div>
+                <div class="govuk-notification-banner__content">
+                    <div class="govuk-warning-text">
+                        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                        <strong class="govuk-warning-text__text">
+                            <span class="govuk-warning-text__assistive">Warning</span>
+                            This application was marked for deletion on 12 November 2021. This will be deleted 4 weeks from this date.
+                        </strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="govuk-notification-banner banner-dangerous" role="region" data-module="govuk-notification-banner">
+                <div class="govuk-notification-banner__header">
+                    <h2 class="govuk-notification-banner__title banner-dangerous-header" id="govuk-notification-banner-title">
+                        Important
+                    </h2>
+                </div>
+                <div class="govuk-notification-banner__content banner-dangerous-content">
+                    <p class="govuk-notification-banner__heading banner-dangerous-heading">
+                        <span class="govuk-warning-text__assistive">Warning</span>
+                        Are you sure you want to delete this application?
+                        <button class="govuk-button govuk-button--warning govuk-!-margin-top-2" name="action" value="Delete" data-module="govuk-button" type="submit">Yes, delete</button>
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="govuk-heading-m">Tabs</h2>
+
+            <div class="govuk-tabs" data-module="govuk-tabs">
+                <h2 class="govuk-tabs__title">
+                    Contents
+                </h2>
+                <ul class="govuk-tabs__list">
+                    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                        <a class="govuk-tabs__tab" href="#past-day">
+                            Past day
+                        </a>
+                    </li>
+                    <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#past-week">
+                            Past week
+                        </a>
+                    </li>
+                    <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#past-month">
+                            Past month
+                        </a>
+                    </li>
+                    <li class="govuk-tabs__list-item">
+                        <a class="govuk-tabs__tab" href="#past-year">
+                            Past year
+                        </a>
+                    </li>
+                </ul>
+                <div class="govuk-tabs__panel" id="past-day">
+                    <h2 class="govuk-heading-l">Past day</h2>
+                    <table class="govuk-table">
+                        <caption class="sr-only">Table of dates</caption>
+                        <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Case manager</th>
+                            <th scope="col" class="govuk-table__header">Cases opened</th>
+                            <th scope="col" class="govuk-table__header">Cases closed</th>
+                        </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">David Francis</td>
+                            <td class="govuk-table__cell">3</td>
+                            <td class="govuk-table__cell">0</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Paul Farmer</td>
+                            <td class="govuk-table__cell">1</td>
+                            <td class="govuk-table__cell">0</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Rita Patel</td>
+                            <td class="govuk-table__cell">2</td>
+                            <td class="govuk-table__cell">0</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
+                    <h2 class="govuk-heading-l">Past week</h2>
+                    <table class="govuk-table">
+                        <caption class="sr-only">Table of dates</caption>
+                        <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Case manager</th>
+                            <th scope="col" class="govuk-table__header">Cases opened</th>
+                            <th scope="col" class="govuk-table__header">Cases closed</th>
+                        </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">David Francis</td>
+                            <td class="govuk-table__cell">24</td>
+                            <td class="govuk-table__cell">18</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Paul Farmer</td>
+                            <td class="govuk-table__cell">16</td>
+                            <td class="govuk-table__cell">20</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Rita Patel</td>
+                            <td class="govuk-table__cell">24</td>
+                            <td class="govuk-table__cell">27</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
+                    <h2 class="govuk-heading-l">Past month</h2>
+                    <table class="govuk-table">
+                        <caption class="sr-only">Table of dates</caption>
+                        <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Case manager</th>
+                            <th scope="col" class="govuk-table__header">Cases opened</th>
+                            <th scope="col" class="govuk-table__header">Cases closed</th>
+                        </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">David Francis</td>
+                            <td class="govuk-table__cell">98</td>
+                            <td class="govuk-table__cell">95</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Paul Farmer</td>
+                            <td class="govuk-table__cell">122</td>
+                            <td class="govuk-table__cell">131</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Rita Patel</td>
+                            <td class="govuk-table__cell">126</td>
+                            <td class="govuk-table__cell">142</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
+                    <h2 class="govuk-heading-l">Past year</h2>
+                    <table class="govuk-table">
+                        <caption class="sr-only">Table of dates</caption>
+                        <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Case manager</th>
+                            <th scope="col" class="govuk-table__header">Cases opened</th>
+                            <th scope="col" class="govuk-table__header">Cases closed</th>
+                        </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">David Francis</td>
+                            <td class="govuk-table__cell">1380</td>
+                            <td class="govuk-table__cell">1472</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Paul Farmer</td>
+                            <td class="govuk-table__cell">1129</td>
+                            <td class="govuk-table__cell">1083</td>
+                        </tr>
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">Rita Patel</td>
+                            <td class="govuk-table__cell">1539</td>
+                            <td class="govuk-table__cell">1265</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <h2 class="govuk-heading-m">Tables</h2>
+
+            <table class="govuk-table">
+                <caption class="sr-only">Months and rates</caption>
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Month you apply</th>
+                        <th scope="col" class="govuk-table__header">Rate for vehicles</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">January</th>
+                        <td class="govuk-table__cell">£95</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">February</th>
+                        <td class="govuk-table__cell">£55</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <th scope="row" class="govuk-table__header">March</th>
+                        <td class="govuk-table__cell">£125</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h2 class="govuk-heading-m">File upload</h2>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="file-upload-1">
+                    Upload a file
+                </label>
+                <input class="govuk-file-upload" id="file-upload-1" name="file-upload-1" type="file">
+            </div>
+
+            <h2 class="govuk-heading-m">Check boxes</h2>
+
+            <div class="govuk-form-group">
+                <div class="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" data-val="true" data-val-required="The Remember me? field is required." id="Input_RememberMe" name="Input.RememberMe" type="checkbox" value="true">
+                        <label class="govuk-label govuk-checkboxes__label" for="Input_RememberMe">
+                            Remember me?
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

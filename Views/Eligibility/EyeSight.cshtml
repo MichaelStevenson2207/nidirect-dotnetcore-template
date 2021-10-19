@@ -1,0 +1,62 @@
+﻿@model nidirect_app_frontend.ViewModels.Eligibility.EyeSightViewModel
+@{
+    ViewData["Title"] = "EyeSight";
+}
+
+<form method="post" asp-action="EyeSight" asp-controller="Eligibility">
+    @Html.AntiForgeryToken()
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+
+                <partial name="../Components/_errorSummary.cshtml" />
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                            <h1 class="govuk-fieldset__heading">Can you meet the legal eyesight standard for driving?</h1>
+                        </legend>
+
+                        <span asp-validation-for="IsLegalEyeSight" id="IsResidentNi-error" class="govuk-error-message"></span>
+
+                        <div class="govuk-radios govuk-radios--inline">
+                            <div class="govuk-radios__item">
+                                @if (Model.IsLegalEyeSight != null && Model.IsLegalEyeSight.Value == true)
+                                {
+                                    <input class="govuk-radios__input" id="IsLegalEyeSight" name="IsLegalEyeSight" asp-for="IsLegalEyeSight" type="radio" value=true checked>
+                                }
+                                else
+                                {
+                                    <input class="govuk-radios__input" id="IsLegalEyeSight" name="IsLegalEyeSight" asp-for="IsLegalEyeSight" type="radio" value=true>
+                                }
+
+                                <label class="govuk-label govuk-radios__label" for="IsLegalEyeSight">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="govuk-radios__item">
+                                @if (Model.IsLegalEyeSight != null && Model.IsLegalEyeSight.Value == false)
+                                {
+                                    <input class="govuk-radios__input" id="IsLegalEyeSight-No" name="IsLegalEyeSight" asp-for="IsLegalEyeSight" type="radio" value=false checked>
+                                }
+                                else
+                                {
+                                    <input class="govuk-radios__input" id="IsLegalEyeSight-No" name="IsLegalEyeSight" asp-for="IsLegalEyeSight" type="radio" value=false>
+                                }
+                                <label class="govuk-label govuk-radios__label" for="IsLegalEyeSight-No">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <input type="submit" value="Continue" name="save" class="govuk-button" data-module="govuk-button" />
+                <div class="govuk-form-group">
+                    <partial name="~/Views/Shared/_ContactUsForHelp.cshtml" />
+                </div>
+            </div>
+        </div>
+    </main>
+</form>
+
