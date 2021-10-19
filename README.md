@@ -3,7 +3,7 @@
 
 | Build  | Branch | Status |
 | ------------- | ------------- | ------------- |
-| Sonar Cloud  | main  | |
+| Sonar Cloud  | main  | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MichaelStevenson2207_nidirect-dotnetcore-template&metric=alert_status)](https://sonarcloud.io/dashboard?id=MichaelStevenson2207_nidirect-dotnetcore-template) |
 
 This is not meant to be an exhaustive template but rather a good head start in term of setting up the UI for NI Direct applications with the GDS design pattern using DotNet Core. I have added in some extra ones such as a timeout feature which is useful.
 
