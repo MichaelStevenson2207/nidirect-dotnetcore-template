@@ -3,27 +3,29 @@
     ViewData["Title"] = "Index";
 }
 
+<a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
 <form asp-controller="CheckAnswers" asp-action="Index" method="post">
     @Html.AntiForgeryToken()
-    
+
     <main class="govuk-main-wrapper" id="main-content" role="main">
-    <div class="govuk-width-container">
+        <div class="govuk-width-container">
 
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-full">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
 
-                <partial name="../Components/_errorSummary.cshtml" />
+                    <partial name="../Components/_errorSummary.cshtml" />
 
-                <h1 class="govuk-heading-l">Check your answers</h1>
+                    <h1 class="govuk-heading-l">Check your answers</h1>
 
-                <p class="govuk-body">
-                    Check the information below carefully.
-                </p>
+                    <p class="govuk-body">
+                        Check the information below carefully.
+                    </p>
 
-                <h2 class="govuk-heading-m">Application details</h2>
+                    <h2 class="govuk-heading-m">Application details</h2>
 
-                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                    <div class="govuk-summary-list__row">
+                    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                        <div class="govuk-summary-list__row">
                         <dt class="govuk-summary-list__key">
                             Forename
                         </dt>
@@ -35,43 +37,43 @@
                                 Change<span class="govuk-visually-hidden"> forename</span>
                             </a>
                         </dd>
-                    </div>
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                            Surname
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                           Frane
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                            <a class="govuk-link" href="#">
-                                Change<span class="govuk-visually-hidden"> surname</span>
-                            </a>
-                        </dd>
-                    </div>
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                            Home address
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                            72 Guild Street<br>London<br>SE23 6FH
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                            <a class="govuk-link" href="#">
-                                Change<span class="govuk-visually-hidden"> home address</span>
-                            </a>
-                        </dd>
-                    </div>
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">
-                            Date created
-                        </dt>
-                        <dd class="govuk-summary-list__value">
-                            @DateTime.Now.ToString("d MMMM yyyy")
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                        </dd>
-                    </div>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Surname
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        Frane
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="#">
+                            Change<span class="govuk-visually-hidden"> surname</span>
+                        </a>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Home address
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        72 Guild Street<br>London<br>SE23 6FH
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="#">
+                            Change<span class="govuk-visually-hidden"> home address</span>
+                        </a>
+                    </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Date created
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        @DateTime.Now.ToString("d MMMM yyyy")
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                    </dd>
+                </div>
                 </dl>
                 <div class="govuk-inset-text">
                     To continue and pick up were you last left off just click 'change' next to the last answered question.
@@ -84,6 +86,6 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
     </main>
 </form>

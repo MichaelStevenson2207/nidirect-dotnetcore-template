@@ -4,6 +4,9 @@
 }
 
 <form method="post" asp-action="Index" asp-controller="Document">
+
+    <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
     <main class="govuk-main-wrapper" id="main-content" role="main">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
@@ -20,7 +23,7 @@
                     <span asp-validation-for="FileUpload.FormFile" class="govuk-error-message">
                     </span>
 
-                    <input type="file" class="govuk-file-upload">
+                    <input type="file" asp-for="FileUpload.FormFile" class="govuk-file-upload">
 
                     <input asp-page-handler="Upload" class="govuk-button govuk-button--secondary" data-module="govuk-button" name="Upload" id="Upload" type="submit" value="Upload" />
                 </div>

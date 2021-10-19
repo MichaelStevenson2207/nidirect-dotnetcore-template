@@ -3,6 +3,8 @@
     ViewData["Title"] = "Index";
 }
 
+<a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
 <form asp-action="Index" asp-controller="Participant" method="post">
     @Html.AntiForgeryToken()
     <main class="govuk-main-wrapper" id="main-content" role="main">
