@@ -3,8 +3,11 @@
     ViewData["Title"] = "Eligibility";
 }
 
+<a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
 <form method="post" asp-action="Eligibility" asp-controller="Eligibility">
     @Html.AntiForgeryToken()
+
     <main class="govuk-main-wrapper" id="main-content" role="main">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
@@ -50,7 +53,7 @@
                         </div>
                     </fieldset>
                 </div>
-           
+
                 <input type="submit" value="Continue" name="save" class="govuk-button" data-module="govuk-button" />
                 <div class="govuk-form-group">
                     <partial name="~/Views/Shared/_ContactUsForHelp.cshtml" />

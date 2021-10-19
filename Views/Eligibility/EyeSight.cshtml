@@ -4,11 +4,13 @@
 }
 
 <form method="post" asp-action="EyeSight" asp-controller="Eligibility">
-    @Html.AntiForgeryToken()
+    
+    <a href="javascript:history.go(-1)" class="govuk-back-link">Back</a>
+
     <main class="govuk-main-wrapper" id="main-content" role="main">
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
-
+          
                 <partial name="../Components/_errorSummary.cshtml" />
 
                 <div class="govuk-form-group">
