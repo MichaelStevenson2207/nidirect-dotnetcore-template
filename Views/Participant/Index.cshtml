@@ -22,7 +22,7 @@
                         First name and any middle names
                     </label>
 
-                    <span asp-validation-for="Forename" class="govuk-error-message"></span>
+                    <span asp-validation-for="Forename" id="Forename-error" class="govuk-error-message"></span>
                     <input class="govuk-input govuk-!-width-two-thirds" asp-for="Forename" type="text" spellcheck="false" autocomplete="given-name">
                 </div>
 
@@ -31,7 +31,7 @@
                         Last name
                     </label>
 
-                    <span asp-validation-for="Surname" class="govuk-error-message"></span>
+                    <span asp-validation-for="Surname" id="Surname-error" class="govuk-error-message"></span>
                     <input class="govuk-input govuk-!-width-two-thirds" asp-for="Surname" type="text" spellcheck="false" autocomplete="family-name">
                 </div>
 
