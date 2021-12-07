@@ -5,6 +5,8 @@
 | ------------- | ------------- | ------------- |
 | Sonar Cloud  | main  | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MichaelStevenson2207_nidirect-dotnetcore-template&metric=alert_status)](https://sonarcloud.io/dashboard?id=MichaelStevenson2207_nidirect-dotnetcore-template) |
 
+Give this a star if you fork it or find it useful thanks!
+
 This is not meant to be an exhaustive template but rather a good head start in term of setting up the UI for NI Direct applications with the GDS design pattern using DotNet Core. I have added in some extra ones such as a timeout feature which is useful.
 
 The below links show you how to install the npm packages and set up in case you need to do it yourself, but you don't need to do that for this template as Ive done it for you. When compiling the sass files I recommend using the live Sass compiler from the marketplace in Visual Studio Code.
