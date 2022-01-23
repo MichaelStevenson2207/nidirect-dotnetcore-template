@@ -9,9 +9,10 @@
     <Description>Template to use to create a NIDirect style ui Prototype</Description>
     <PackageTags>dotnet-new;templates;architecture;prototype;toolkit;ui</PackageTags>
     <RepositoryUrl>https://github.com/dof-dss/architecture-dotnet-uiprototypetoolkit</RepositoryUrl> 
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>nidirect_app_frontend</RootNamespace>
     <IsPackable>true</IsPackable>
+    <UserSecretsId>779aaef0-24aa-45ff-9305-70806cf39891</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,10 +25,11 @@
 
   <ItemGroup>
     <PackageReference Include="JWT" Version="8.4.2" />
+    <PackageReference Include="Microsoft.PowerShell.Commands.Utility" Version="6.2.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Stripe.net" Version="39.73.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
