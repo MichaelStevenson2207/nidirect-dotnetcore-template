@@ -9,9 +9,10 @@
     <Description>Template to use to create a NIDirect style ui Prototype</Description>
     <PackageTags>dotnet-new;templates;architecture;prototype;toolkit;ui</PackageTags>
     <RepositoryUrl>https://github.com/dof-dss/architecture-dotnet-uiprototypetoolkit</RepositoryUrl> 
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>nidirect_app_frontend</RootNamespace>
     <IsPackable>true</IsPackable>
+    <UserSecretsId>779aaef0-24aa-45ff-9305-70806cf39891</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
