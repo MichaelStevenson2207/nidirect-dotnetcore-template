@@ -25,19 +25,19 @@ namespace nidirect_app_frontend.Models
         [JsonProperty("Secondary_Thorfare")]
         public string SecondaryThorfare { get; set; }
 
-        [JsonProperty("Locality")]
+        [JsonProperty(nameof(Locality))]
         public string Locality { get; set; }
 
         [JsonProperty("Townland")]
         public string TownLand { get; set; }
 
-        [JsonProperty("Town")]
+        [JsonProperty(nameof(Town))]
         public string Town { get; set; }
 
-        [JsonProperty("County")]
+        [JsonProperty(nameof(County))]
         public string County { get; set; }
 
-        [JsonProperty("Postcode")]
+        [JsonProperty(nameof(Postcode))]
         public string Postcode { get; set; }
 
         [JsonProperty("BLPU")]
@@ -70,7 +70,7 @@ namespace nidirect_app_frontend.Models
         [JsonProperty("Address_Status")]
         public string AddressStatus { get; set; }
 
-        [JsonProperty("Classification")]
+        [JsonProperty(nameof(Classification))]
         public string Classification { get; set; }
 
         [JsonProperty("Creation_Date")]
@@ -82,7 +82,7 @@ namespace nidirect_app_frontend.Models
         [JsonProperty("Archived_Date")]
         public string ArchivedDate { get; set; }
 
-        [JsonProperty("Action")]
+        [JsonProperty(nameof(Action))]
         public string Action { get; set; }
 
         [JsonProperty("UDPRN")]
