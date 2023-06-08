@@ -8,7 +8,6 @@
     <meta name="theme-color" content="#0a78cd" />
     <title>@(Model.TitleTagName != null ? Model.TitleTagName + " - " : string.Empty) NI Direct</title>
     <link rel="apple-touch-icon" src="~/images/ni-direct-apple-touch.png" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/sass/site.css" />
     <link rel="icon" sizes="16x16 32x32 48x48" href="~/favicon.ico" type="image/x-icon">
     <link href="~/css/jquery-modal.css" rel="stylesheet" />
@@ -29,7 +28,6 @@
     <partial name="../Components/_footer.cshtml" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <partial name="../Shared/_ValidationScriptsPartial.cshtml" />
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
     <partial name="../Shared/_initializeGOVUKFrontend.cshtml" />
