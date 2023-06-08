@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace nidirect_app_frontend.Attributes
@@ -9,7 +10,7 @@ namespace nidirect_app_frontend.Attributes
 
         public AlphaNumericLimitedSpecialCharsAttribute()
         {
-            _regex = new Regex("^[\\p{L}\\p{N}\\x20\\-\\'\\,\\.\\/\\?\\!\\£\\&]*$");
+            _regex = new Regex("^[\\p{L}\\p{N}\\x20\\-\\'\\,\\.\\/\\?\\!\\£\\&]*$", RegexOptions.None, TimeSpan.FromMilliseconds(100));
 
             ErrorMessage = "Only alpha-numeric characters, spaces, hyphens, comma, full stop, question mark, exclamation mark, pound sign, ampersand, forward slash and apostrophes are permitted";
         }
