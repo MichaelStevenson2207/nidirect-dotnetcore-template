@@ -19,9 +19,9 @@ namespace nidirect_app_frontend.Attributes
             var instance = validationContext.ObjectInstance;
             var type = instance.GetType();
 
-            var propertyValue = type.GetProperty(PropertyName).GetValue(instance, null);
+            var propertyValue = type.GetProperty(PropertyName)!.GetValue(instance, null);
 
-            if (propertyValue.ToString() == Value.ToString() && value == null)
+            if (propertyValue!.ToString() == Value.ToString() && value == null)
             {
                 return new ValidationResult(ErrorMessage);
             }
