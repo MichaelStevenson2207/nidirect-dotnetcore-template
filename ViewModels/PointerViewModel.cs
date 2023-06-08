@@ -1,7 +1,7 @@
-﻿using nidirect_app_frontend.Attributes;
-using nidirect_app_frontend.Models;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using nidirect_app_frontend.Attributes;
+using nidirect_app_frontend.Models;
 
 namespace nidirect_app_frontend.ViewModels
 {

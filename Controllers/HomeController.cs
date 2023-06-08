@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using nidirect_app_frontend.Models;
 using nidirect_app_frontend.ViewModels;
-using System.Diagnostics;
 
 namespace nidirect_app_frontend.Controllers
 {

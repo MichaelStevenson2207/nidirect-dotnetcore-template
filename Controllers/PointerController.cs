@@ -1,4 +1,10 @@
-﻿using JWT;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
 using Microsoft.AspNetCore.Mvc;
@@ -6,12 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using nidirect_app_frontend.Models;
 using nidirect_app_frontend.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace nidirect_app_frontend.Controllers
 {

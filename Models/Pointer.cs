@@ -2,7 +2,7 @@
 
 namespace nidirect_app_frontend.Models
 {
-    public class Pointer
+    public sealed class Pointer
     {
         [JsonProperty("Organisation_Name")]
         public string OrganisationName { get; set; }
