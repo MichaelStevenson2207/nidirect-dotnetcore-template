@@ -69,7 +69,7 @@ namespace nidirect_app_frontend.Controllers
                     var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     var dataObj = JObject.Parse(responseBody);
 
-                    var nextUrl = dataObj["_links"]["next_url"]["href"].ToString();
+                    var nextUrl = dataObj["_links"]!["next_url"]!["href"]!.ToString();
 
                     // Creating cookie of the paymentUrl / Payment Id, Ideally we'd want to store this in a DB with
                     // assiociated user but for demo just save to cookies. As this info is needed in the Completed action 
@@ -77,7 +77,7 @@ namespace nidirect_app_frontend.Controllers
 
                     Response.Cookies.Append(
                         "paymentUrl",
-                        dataObj["_links"]["self"]["href"].ToString(),
+                        dataObj["_links"]["self"]!["href"]!.ToString(),
                         new CookieOptions()
                         {
                             Path = "/",
@@ -112,14 +112,14 @@ namespace nidirect_app_frontend.Controllers
                 var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 var dataObj = JObject.Parse(responseBody);
 
-                var status = dataObj["state"]["status"].ToString();
+                var status = dataObj["state"]!["status"]!.ToString();
                 ViewData["status"] = status;
 
                 //if not success we assume payment has failed
                 if (status != "success")
                 {
-                    var message = dataObj["state"]["message"].ToString();
-                    var code = dataObj["state"]["code"].ToString();
+                    var message = dataObj["state"]!["message"]!.ToString();
+                    var code = dataObj["state"]!["code"]!.ToString();
                     ModelState.AddModelError(code, message);
                 }
                 else

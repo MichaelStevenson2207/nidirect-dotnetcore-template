@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Stripe;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Set up services
