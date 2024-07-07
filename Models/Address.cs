@@ -2,7 +2,7 @@
 
 namespace nidirect_app_frontend.Models
 {
-    public class Address : IAddress
+    public sealed class Address : IAddress
     {
         public string SearchAddress { get; set; }
         public string SearchPostCode { get; set; }

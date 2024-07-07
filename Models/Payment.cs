@@ -2,7 +2,7 @@
 
 namespace nidirect_app_frontend.Models
 {
-    public class Payment
+    public sealed class Payment
     {
         [JsonProperty("amount")]
         public int Amount { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace nidirect_app_frontend.Attributes
@@ -9,7 +10,7 @@ namespace nidirect_app_frontend.Attributes
 
         public NumericOnlyAttribute()
         {
-            _regex = new Regex(@"^\d+$");
+            _regex = new Regex(@"^\d+$", RegexOptions.None, TimeSpan.FromMilliseconds(100));
 
             ErrorMessage = "Only numeric characters are permitted";
         }
