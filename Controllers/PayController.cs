@@ -14,195 +14,197 @@ using nidirect_app_frontend.Models;
 using nidirect_app_frontend.ViewModels;
 using Stripe.Checkout;
 
-namespace nidirect_app_frontend.Controllers
+namespace nidirect_app_frontend.Controllers;
+
+public class PayController : Controller
 {
-    public class PayController : Controller
+    private readonly IHttpClientFactory _clientFactory;
+    private readonly IConfiguration _configuration;
+    private const string SectionName = "Pay";
+
+    public PayController(IHttpClientFactory clientFactory, IConfiguration configuration)
     {
-        private readonly IHttpClientFactory _clientFactory;
-        private readonly IConfiguration _configuration;
-        private const string SectionName = "Pay";
+        _clientFactory = clientFactory;
+        _configuration = configuration;
+    }
 
-        public PayController(IHttpClientFactory clientFactory, IConfiguration configuration)
+    [HttpGet]
+    public IActionResult GovUkPay()
+    {
+        var model = new BaseViewModel
         {
-            _clientFactory = clientFactory;
-            _configuration = configuration;
-        }
+            SectionName = SectionName,
+            TitleTagName = "Gov UK pay"
+        };
 
-        [HttpGet]
-        public IActionResult GovUkPay()
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> GovUkPay(BaseViewModel model)
+    {
+        model.SectionName = SectionName;
+        model.TitleTagName = "Gov UK pay";
+
+        if (!ModelState.IsValid)
         {
-            BaseViewModel model = new BaseViewModel
-            {
-                SectionName = SectionName,
-                TitleTagName = "Gov UK pay"
-            };
-
             return View(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GovUkPay(BaseViewModel model)
+        var baseUrl = $"{Request.Scheme}://{Request.Host}/pay/completed";
+
+        var payment = new Payment
         {
-            model.SectionName = SectionName;
-            model.TitleTagName = "Gov UK pay";
+            Amount = 6250,
+            Reference = DateTime.Now.ToString(new CultureInfo("en-GB")),
+            Description = "Demo gov pay",
+            ReturnUrl = baseUrl
+        };
 
-            string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}/pay/completed";
+        var client = _clientFactory.CreateClient("GovPay");
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _configuration["govPaySecretKey"]);
+        client.DefaultRequestHeaders.Add("Accept", "application/json");
 
-            Payment payment = new Payment
-            {
-                Amount = 6250,
-                Reference = DateTime.Now.ToString(new CultureInfo("en-GB")),
-                Description = "Demo gov pay",
-                ReturnUrl = baseUrl
-            };
+        var response = await client.PostAsync("payments", new StringContent(JsonConvert.SerializeObject(payment), Encoding.UTF8, "application/json"));
 
-            var client = _clientFactory.CreateClient("GovPay");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _configuration["govPaySecretKey"]);
-            client.DefaultRequestHeaders.Add("Accept", "application/json");
+        if (response.IsSuccessStatusCode)
+        {
+            using HttpContent content = response.Content;
+            var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var dataObj = JObject.Parse(responseBody);
 
-            var response = await client.PostAsync("payments", new StringContent(JsonConvert.SerializeObject(payment), Encoding.UTF8, "application/json"));
+            var nextUrl = dataObj["_links"]!["next_url"]!["href"]!.ToString();
 
-            if (response.IsSuccessStatusCode)
-            {
-                using (HttpContent content = response.Content)
+            // Creating cookie of the paymentUrl / Payment Id, Ideally we'd want to store this in a DB with
+            // assiociated user but for demo just save to cookies. As this info is needed in the Completed action 
+            // to work out status of payment from govpay, and any future reference to this payment such as refunds etc.
+
+            Response.Cookies.Append(
+                "paymentUrl",
+                dataObj["_links"]["self"]!["href"]!.ToString(),
+                new CookieOptions()
                 {
-                    var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    var dataObj = JObject.Parse(responseBody);
-
-                    var nextUrl = dataObj["_links"]!["next_url"]!["href"]!.ToString();
-
-                    // Creating cookie of the paymentUrl / Payment Id, Ideally we'd want to store this in a DB with
-                    // assiociated user but for demo just save to cookies. As this info is needed in the Completed action 
-                    // to work out status of payment from govpay, and any future reference to this payment such as refunds etc.
-
-                    Response.Cookies.Append(
-                        "paymentUrl",
-                        dataObj["_links"]["self"]!["href"]!.ToString(),
-                        new CookieOptions()
-                        {
-                            Path = "/",
-                            HttpOnly = true,
-                            Secure = true
-                        }
-                    );
-
-                    return Redirect(nextUrl);
+                    Path = "/",
+                    HttpOnly = true,
+                    Secure = true
                 }
+            );
+
+            return Redirect(nextUrl);
+        }
+        return View(model);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Completed(BaseViewModel model)
+    {
+        model.SectionName = SectionName;
+        model.TitleTagName = "Completed";
+
+        //reading the cookie so we can make a call to see the status of the payment from gov pay.
+        var paymentUrl = Request.Cookies["paymentUrl"];
+
+        var client = _clientFactory.CreateClient("GovPay");
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _configuration["govPaySecretKey"]);
+        client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+        var response = await client.GetAsync(paymentUrl);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var dataObj = JObject.Parse(responseBody);
+
+            var status = dataObj["state"]!["status"]!.ToString();
+            ViewData["status"] = status;
+
+            //if not success we assume payment has failed
+            if (status != "success")
+            {
+                var message = dataObj["state"]!["message"]!.ToString();
+                var code = dataObj["state"]!["code"]!.ToString();
+                ModelState.AddModelError(code, message);
             }
-            return View(model);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Completed(BaseViewModel model)
-        {
-            model.SectionName = SectionName;
-            model.TitleTagName = "Completed";
-
-            //reading the cookie so we can make a call to see the status of the payment from gov pay.
-            string paymentUrl = Request.Cookies["paymentUrl"];
-
-            var client = _clientFactory.CreateClient("GovPay");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _configuration["govPaySecretKey"]);
-            client.DefaultRequestHeaders.Add("Accept", "application/json");
-
-            var response = await client.GetAsync(paymentUrl);
-
-            if (response.IsSuccessStatusCode)
+            else
             {
-                var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                var dataObj = JObject.Parse(responseBody);
-
-                var status = dataObj["state"]!["status"]!.ToString();
-                ViewData["status"] = status;
-
-                //if not success we assume payment has failed
-                if (status != "success")
-                {
-                    var message = dataObj["state"]!["message"]!.ToString();
-                    var code = dataObj["state"]!["code"]!.ToString();
-                    ModelState.AddModelError(code, message);
-                }
-                else
-                {
-                    // Flash message of success.
-                    TempData["Success"] = "Payment has been received with thanks";
-                }
-
-                Response.Cookies.Delete("paymentUrl");
+                // Flash message of success.
+                TempData["Success"] = "Payment has been received with thanks";
             }
-            return View(model);
+
+            Response.Cookies.Delete("paymentUrl");
         }
+        return View(model);
+    }
 
 
-        [HttpGet]
-        public IActionResult Stripe()
+    [HttpGet]
+    public IActionResult Stripe()
+    {
+        var model = new BaseViewModel
         {
-            BaseViewModel model = new BaseViewModel
-            {
-                SectionName = "Stripe",
-                TitleTagName = "Stripe"
-            };
+            SectionName = "Stripe",
+            TitleTagName = "Stripe"
+        };
 
-            return View(model);
-        }
+        return View(model);
+    }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Stripe(BaseViewModel model)
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Stripe(BaseViewModel model)
+    {
+        // Get callback url
+        var domain = $"{this.Request.Scheme}://{this.Request.Host}/";
+
+        var options = new SessionCreateOptions
         {
-            // Get callback url
-            var domain = $"{this.Request.Scheme}://{this.Request.Host}/";
-
-            var options = new SessionCreateOptions
+            LineItems = new List<SessionLineItemOptions>
             {
-                LineItems = new List<SessionLineItemOptions>
+                new()
                 {
-                  new SessionLineItemOptions
-                  {
                     // replace this with the `price` of the product you want to sell.
                     // Set up the products and prices in the Dashboard of the stipe site.
                     // For each price you require an Id from the dashboard to display the price info
                     Price = _configuration["stripePriceId"],
                     Quantity = 1,
-                  },
                 },
-                PaymentMethodTypes = new List<string>
-                {
-                  "card"
-                },
-                Mode = "payment",
-                SuccessUrl = domain + "pay/stripesuccess",
-                CancelUrl = domain + "pay/stripecancel",
-            };
-            var service = new SessionService();
-
-            Session session = service.Create(options);
-
-            Response.Headers.Add("Location", session.Url);
-            return new StatusCodeResult(303);
-        }
-
-        public IActionResult StripeSuccess()
-        {
-            BaseViewModel model = new BaseViewModel
+            },
+            PaymentMethodTypes = new List<string>
             {
-                SectionName = "Stripe",
-                TitleTagName = "Success"
-            };
+                "card"
+            },
+            Mode = "payment",
+            SuccessUrl = domain + "pay/stripesuccess",
+            CancelUrl = domain + "pay/stripecancel",
+        };
+        var service = new SessionService();
 
-            // Store success in the database
-            return View(model);
-        }
+        var session = service.Create(options);
 
-        public IActionResult StripeCancel()
+        Response.Headers.Add("Location", session.Url);
+        return new StatusCodeResult(303);
+    }
+
+    public IActionResult StripeSuccess()
+    {
+        var model = new BaseViewModel
         {
-            BaseViewModel model = new BaseViewModel
-            {
-                SectionName = "Stripe",
-                TitleTagName = "Cancelled"
-            };
+            SectionName = "Stripe",
+            TitleTagName = "Success"
+        };
 
-            return View(model);
-        }
+        // Store success in the database
+        return View(model);
+    }
+
+    public IActionResult StripeCancel()
+    {
+        var model = new BaseViewModel
+        {
+            SectionName = "Stripe",
+            TitleTagName = "Cancelled"
+        };
+
+        return View(model);
     }
 }
