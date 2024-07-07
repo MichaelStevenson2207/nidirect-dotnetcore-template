@@ -101,6 +101,11 @@ public sealed class PayController : Controller
         model.SectionName = SectionName;
         model.TitleTagName = "Completed";
 
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
         //reading the cookie so we can make a call to see the status of the payment from gov pay.
         var paymentUrl = Request.Cookies["paymentUrl"];
 
@@ -153,6 +158,11 @@ public sealed class PayController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Stripe(BaseViewModel model)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
         // Get callback url
         var domain = $"{this.Request.Scheme}://{this.Request.Host}/";
 

@@ -23,6 +23,11 @@ public sealed class DocumentController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Index(DocumentViewModel model)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
         return RedirectToAction("Index", "CheckAnswers");
     }
 }

@@ -15,7 +15,7 @@ using nidirect_app_frontend.ViewModels;
 
 namespace nidirect_app_frontend.Controllers;
 
-public sealed class PointerController : Controller
+public class PointerController : Controller
 {
     private readonly IHttpClientFactory _pointerClient;
     private readonly IConfiguration _configuration;
