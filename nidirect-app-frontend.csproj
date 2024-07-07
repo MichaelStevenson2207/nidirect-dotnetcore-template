@@ -20,9 +20,9 @@
     <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JWT" Version="8.4.2" />
-    <PackageReference Include="Microsoft.PowerShell.Commands.Utility" Version="6.2.3" />
-    <PackageReference Include="Stripe.net" Version="39.73.0" />
+    <PackageReference Include="JWT" Version="10.1.1" />
+    <PackageReference Include="Microsoft.PowerShell.Commands.Utility" Version="7.4.3" />
+    <PackageReference Include="Stripe.net" Version="45.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="System.Text.Encodings.Web" Version="8.0.0" />
   </ItemGroup>
