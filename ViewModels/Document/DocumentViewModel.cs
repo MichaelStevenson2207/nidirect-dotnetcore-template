@@ -2,7 +2,7 @@
 
 namespace nidirect_app_frontend.ViewModels.Document;
 
-public class DocumentViewModel : BaseViewModel
+public sealed class DocumentViewModel : BaseViewModel
 {
     [BindProperty]
     public BufferedSingleFileUploadPhysical FileUpload { get; set; }

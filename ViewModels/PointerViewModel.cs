@@ -5,7 +5,7 @@ using nidirect_app_frontend.Models;
 
 namespace nidirect_app_frontend.ViewModels;
 
-public class PointerViewModel : BaseViewModel, IAddress
+public sealed class PointerViewModel : BaseViewModel, IAddress
 {
     public string SearchAddress { get; set; }
     public string SearchPostCode { get; set; }

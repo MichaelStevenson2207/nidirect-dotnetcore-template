@@ -3,14 +3,14 @@ using nidirect_app_frontend.ViewModels.Document;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class DocumentController : Controller
+public sealed class DocumentController : Controller
 {
     private const string SectionName = "Documents";
 
     [HttpGet]
     public IActionResult Index()
     {
-        DocumentViewModel model = new DocumentViewModel
+        var model = new DocumentViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Upload documents"

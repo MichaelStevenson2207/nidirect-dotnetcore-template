@@ -16,7 +16,7 @@ using Stripe.Checkout;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class PayController : Controller
+public sealed class PayController : Controller
 {
     private readonly IHttpClientFactory _clientFactory;
     private readonly IConfiguration _configuration;

@@ -3,14 +3,14 @@ using nidirect_app_frontend.ViewModels.Participant;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class ParticipantController : Controller
+public sealed class ParticipantController : Controller
 {
     private const string SectionName = "Participant";
 
     [HttpGet]
     public IActionResult Index()
     {
-        IndexViewModel model = new IndexViewModel
+        var model = new IndexViewModel
         {
             SectionName = SectionName,
             TitleTagName = "What is your full name?"

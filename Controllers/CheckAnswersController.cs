@@ -3,14 +3,14 @@ using nidirect_app_frontend.ViewModels;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class CheckAnswersController : Controller
+public sealed class CheckAnswersController : Controller
 {
     private const string SectionName = "Check answers";
 
     [HttpGet]
     public IActionResult Index()
     {
-        BaseViewModel model = new BaseViewModel
+        var model = new BaseViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Check answers"

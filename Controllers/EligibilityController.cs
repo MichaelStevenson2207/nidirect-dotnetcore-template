@@ -4,14 +4,14 @@ using nidirect_app_frontend.ViewModels.Eligibility;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class EligibilityController : Controller
+public sealed class EligibilityController : Controller
 {
     private const string SectionName = "Eligibility";
 
     [HttpGet]
     public IActionResult Eligibility()
     {
-        EligibilityViewModel model = new EligibilityViewModel
+        var model = new EligibilityViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Are you currently resident in Northern Ireland?"
@@ -39,7 +39,7 @@ public class EligibilityController : Controller
     [HttpGet]
     public IActionResult EyeSight()
     {
-        EyeSightViewModel model = new EyeSightViewModel
+        var model = new EyeSightViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Can you meet the legal eyesight standard for driving?"
@@ -67,7 +67,7 @@ public class EligibilityController : Controller
     [HttpGet]
     public IActionResult End()
     {
-        BaseViewModel model = new BaseViewModel
+        var model = new BaseViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Sorry, you are unable to continue"

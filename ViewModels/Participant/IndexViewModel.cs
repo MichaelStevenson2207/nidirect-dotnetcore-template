@@ -2,7 +2,7 @@
 
 namespace nidirect_app_frontend.ViewModels.Participant;
 
-public class IndexViewModel : BaseViewModel
+public sealed class IndexViewModel : BaseViewModel
 {
     [Required(ErrorMessage = "Enter your forename")]
     public string Forename { get; set; }

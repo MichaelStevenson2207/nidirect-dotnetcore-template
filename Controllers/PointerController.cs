@@ -15,7 +15,7 @@ using nidirect_app_frontend.ViewModels;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class PointerController : Controller
+public sealed class PointerController : Controller
 {
     private readonly IHttpClientFactory _pointerClient;
     private readonly IConfiguration _configuration;
@@ -30,7 +30,7 @@ public class PointerController : Controller
     [HttpGet]
     public IActionResult Index()
     {
-        PointerViewModel model = new PointerViewModel
+        var model = new PointerViewModel
         {
             SectionName = SectionName,
             TitleTagName = "What is your permanent address?"
@@ -51,15 +51,13 @@ public class PointerController : Controller
 
         var result = await client.GetAsync("PostCodeSearch/" + postCode);
 
-        List<Pointer> pointerAddresses = new List<Pointer>();
+        var pointerAddresses = new List<Pointer>();
 
         if (result.IsSuccessStatusCode)
         {
-            using (HttpContent content = result.Content)
-            {
-                var resp = content.ReadAsStringAsync();
-                pointerAddresses = JsonConvert.DeserializeObject<IEnumerable<Pointer>>(resp.Result).ToList();
-            }
+            using HttpContent content = result.Content;
+            var resp = content.ReadAsStringAsync();
+            pointerAddresses = JsonConvert.DeserializeObject<IEnumerable<Pointer>>(resp.Result).ToList();
         }
 
         return Json(pointerAddresses);

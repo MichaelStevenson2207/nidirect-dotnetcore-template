@@ -5,14 +5,14 @@ using nidirect_app_frontend.ViewModels;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class HomeController : Controller
+public sealed class HomeController : Controller
 {
     private const string SectionName = "Home";
 
     [HttpGet]
     public IActionResult Index()
     {
-        BaseViewModel model = new BaseViewModel
+        var model = new BaseViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Index"
