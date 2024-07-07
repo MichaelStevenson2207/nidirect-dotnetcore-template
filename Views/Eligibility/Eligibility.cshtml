@@ -24,7 +24,7 @@
 
                         <div class="govuk-radios govuk-radios--inline">
                             <div class="govuk-radios__item">
-                                @if (Model.IsResidentNi != null && Model.IsResidentNi.Value == true)
+                                @if (Model.IsResidentNi is true)
                                 {
                                     <input class="govuk-radios__input" id="IsResidentNi" name="IsResidentNi" asp-for="IsResidentNi" type="radio" value=true checked>
                                 }
@@ -38,7 +38,7 @@
                                 </label>
                             </div>
                             <div class="govuk-radios__item">
-                                @if (Model.IsResidentNi != null && Model.IsResidentNi.Value == false)
+                                @if (Model.IsResidentNi is false)
                                 {
                                     <input class="govuk-radios__input" id="IsResidentNi-No" name="IsResidentNi" asp-for="IsResidentNi" type="radio" value=false checked>
                                 }

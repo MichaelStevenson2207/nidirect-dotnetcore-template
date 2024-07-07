@@ -13,80 +13,79 @@ using Newtonsoft.Json;
 using nidirect_app_frontend.Models;
 using nidirect_app_frontend.ViewModels;
 
-namespace nidirect_app_frontend.Controllers
+namespace nidirect_app_frontend.Controllers;
+
+public class PointerController : Controller
 {
-    public class PointerController : Controller
+    private readonly IHttpClientFactory _pointerClient;
+    private readonly IConfiguration _configuration;
+    private const string SectionName = "Pointer";
+
+    public PointerController(IHttpClientFactory pointerClient, IConfiguration configuration)
     {
-        private readonly IHttpClientFactory _pointerClient;
-        private readonly IConfiguration _configuration;
-        private const string SectionName = "Pointer";
+        _pointerClient = pointerClient;
+        _configuration = configuration;
+    }
 
-        public PointerController(IHttpClientFactory pointerClient, IConfiguration configuration)
+    [HttpGet]
+    public IActionResult Index()
+    {
+        PointerViewModel model = new PointerViewModel
         {
-            _pointerClient = pointerClient;
-            _configuration = configuration;
-        }
+            SectionName = SectionName,
+            TitleTagName = "What is your permanent address?"
+        };
 
-        [HttpGet]
-        public IActionResult Index()
+        return View(model);
+    }
+
+    [HttpGet]
+    public async Task<JsonResult> GetAddressesAsync(string postCode)
+    {
+        var client = _pointerClient.CreateClient("PointerClient");
+
+        client.DefaultRequestHeaders.Accept.Clear();
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+        client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CreateJwtToken());
+
+        var result = await client.GetAsync("PostCodeSearch/" + postCode);
+
+        List<Pointer> pointerAddresses = new List<Pointer>();
+
+        if (result.IsSuccessStatusCode)
         {
-            PointerViewModel model = new PointerViewModel
+            using (HttpContent content = result.Content)
             {
-                SectionName = SectionName,
-                TitleTagName = "What is your permanent address?"
-            };
-
-            return View(model);
-        }
-
-        [HttpGet]
-        public async Task<JsonResult> GetAddressesAsync(string postCode)
-        {
-            var client = _pointerClient.CreateClient("PointerClient");
-
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + CreateJwtToken());
-
-            var result = await client.GetAsync("PostCodeSearch/" + postCode);
-
-            List<Pointer> pointerAddresses = new List<Pointer>();
-
-            if (result.IsSuccessStatusCode)
-            {
-                using (HttpContent content = result.Content)
-                {
-                    var resp = content.ReadAsStringAsync();
-                    pointerAddresses = JsonConvert.DeserializeObject<IEnumerable<Pointer>>(resp.Result).ToList();
-                }
+                var resp = content.ReadAsStringAsync();
+                pointerAddresses = JsonConvert.DeserializeObject<IEnumerable<Pointer>>(resp.Result).ToList();
             }
-
-            return Json(pointerAddresses);
         }
 
-        /// <summary>
-        /// Creates a JWT token to pass to the pointer api to authenticate
-        /// </summary>
-        /// <returns></returns>
-        private string CreateJwtToken()
+        return Json(pointerAddresses);
+    }
+
+    /// <summary>
+    /// Creates a JWT token to pass to the pointer api to authenticate
+    /// </summary>
+    /// <returns></returns>
+    private string CreateJwtToken()
+    {
+        var unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        var iat = Math.Round((DateTime.UtcNow - unixEpoch).TotalSeconds);
+
+        var payload = new Dictionary<string, object>
         {
-            var unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var iat = Math.Round((DateTime.UtcNow - unixEpoch).TotalSeconds);
+            { "iat", iat },
+            { "kid", _configuration["pointerKid"] }
+        };
 
-            var payload = new Dictionary<string, object>
-            {
-                { "iat", iat },
-                { "kid", _configuration["pointerKid"] }
-            };
+        IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
+        IJsonSerializer serializer = new JsonNetSerializer();
+        IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
+        IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
 
-            IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
-            IJsonSerializer serializer = new JsonNetSerializer();
-            IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
-            IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
-
-            var jwtToken = encoder.Encode(payload, _configuration["pointerSecret"]);
-            return jwtToken;
-        }
+        var jwtToken = encoder.Encode(payload, _configuration["pointerSecret"]);
+        return jwtToken;
     }
 }
