@@ -1,4 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -6,13 +13,6 @@ using Newtonsoft.Json.Linq;
 using nidirect_app_frontend.Models;
 using nidirect_app_frontend.ViewModels;
 using Stripe.Checkout;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace nidirect_app_frontend.Controllers
 {
