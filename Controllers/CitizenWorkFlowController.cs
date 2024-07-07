@@ -3,14 +3,14 @@ using nidirect_app_frontend.ViewModels;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class CitizenWorkFlowController : Controller
+public sealed class CitizenWorkFlowController : Controller
 {
     private const string SectionName = "Workflows";
 
     [HttpGet]
     public IActionResult Index()
     {
-        BaseViewModel model = new BaseViewModel
+        var model = new BaseViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Workflows"
@@ -22,7 +22,7 @@ public class CitizenWorkFlowController : Controller
     [HttpGet]
     public IActionResult Start()
     {
-        BaseViewModel model = new BaseViewModel
+        var model = new BaseViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Apply for your first provisional driving licence"

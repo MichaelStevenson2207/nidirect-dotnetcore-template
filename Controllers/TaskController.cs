@@ -3,14 +3,14 @@ using nidirect_app_frontend.ViewModels;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class TaskController : Controller
+public sealed class TaskController : Controller
 {
     private const string SectionName = "Tasks";
 
     [HttpGet]
     public IActionResult Index()
     {
-        BaseViewModel model = new BaseViewModel
+        var model = new BaseViewModel
         {
             SectionName = SectionName,
             TitleTagName = "Task list"

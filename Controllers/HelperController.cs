@@ -3,7 +3,7 @@ using nidirect_app_frontend.ViewModels;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class HelperController : Controller
+public sealed class HelperController : Controller
 {
     public RedirectToActionResult TimeoutResult()
     {
@@ -13,7 +13,7 @@ public class HelperController : Controller
     [HttpGet]
     public IActionResult Timeout()
     {
-        BaseViewModel model = new BaseViewModel
+        var model = new BaseViewModel
         {
             SectionName = "Time out",
             TitleTagName = "Timed out"

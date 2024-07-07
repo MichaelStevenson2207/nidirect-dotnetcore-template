@@ -16,7 +16,7 @@ using Stripe.Checkout;
 
 namespace nidirect_app_frontend.Controllers;
 
-public class PayController : Controller
+public sealed class PayController : Controller
 {
     private readonly IHttpClientFactory _clientFactory;
     private readonly IConfiguration _configuration;
@@ -101,6 +101,11 @@ public class PayController : Controller
         model.SectionName = SectionName;
         model.TitleTagName = "Completed";
 
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
         //reading the cookie so we can make a call to see the status of the payment from gov pay.
         var paymentUrl = Request.Cookies["paymentUrl"];
 
@@ -153,6 +158,11 @@ public class PayController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Stripe(BaseViewModel model)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
         // Get callback url
         var domain = $"{this.Request.Scheme}://{this.Request.Host}/";
 
